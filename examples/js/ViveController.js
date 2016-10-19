@@ -23,11 +23,12 @@ THREE.ViveController = function ( id ) {
 
 		var gamepads = navigator.getGamepads();
 
-		for ( var i = 0, j = 0; i < 4; i ++ ) {
+		for ( var i = 0, j = 0; i < gamepads.length; i ++ ) {
 
 			var gamepad = gamepads[ i ];
 
-			if ( gamepad && gamepad.id === 'OpenVR Gamepad' ) {
+			if ( gamepad && gamepad.pose != undefined &&
+			     gamepad.buttons.length >= 3 && gamepad.axes.length >= 2) {
 
 				if ( j === id ) return gamepad;
 
